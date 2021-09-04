@@ -1,0 +1,8 @@
+/* Import core styles */
+@import '../scss/main.scss';
+
+/* Import site styles */
+@import 'site';
+
+/* Include style from core */
+@include base-reset;

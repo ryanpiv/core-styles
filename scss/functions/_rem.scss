@@ -1,0 +1,37 @@
+/* stylelint-disable order/order */
+@use "sass:math";
+
+
+$font-size-default: 16px;
+
+/// From: https://css-tricks.com/snippets/sass/strip-unit-function/
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/// @param {List} $lengths-to-convert - List of dividends
+/// @return {List} - Rems
+
+@function rem($lengths-to-convert) {
+  @if ($lengths-to-convert == null) {
+    @return null;
+  }
+
+  $rem-list: ();
+  $divisor: strip-unit($font-size-default);
+
+  @each $length in $lengths-to-convert {
+    $dividend: strip-unit($length);
+    $quotient: math.div($dividend, $divisor) * 1rem;
+    $rem-list: append($rem-list, $quotient);
+  }
+
+  @return $rem-list;
+}

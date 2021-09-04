@@ -1,0 +1,19 @@
+/// @param {String} $url - Path to background image
+/// @param {String || Number} $size - Background size
+/// @param {String || Number} $x - Horizontal background position
+/// @param {String || Number} $y - Vertical background position
+/// @param {String} $repeat - Background repeat
+/// @output Background image rules
+
+@mixin background-image(
+  $url,
+  $size: cover,
+  $x: 50%,
+  $y: 50%,
+  $repeat: no-repeat
+) {
+  background-image: url($url);
+  background-repeat: $repeat;
+  background-position: $x $y;
+  background-size: $size;
+}
